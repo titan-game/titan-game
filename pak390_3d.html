@@ -745,3 +745,9 @@ body {
   }
 }
 </style>
+ren.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+ren.outputColorSpace = THREE.SRGBColorSpace;
+ren.toneMapping = THREE.ACESFilmicToneMapping;
+ren.toneMappingExposure = 1.25;
+ren.shadowMap.enabled = true;
+ren.shadowMap.type = THREE.PCFSoftShadowMap;
