@@ -680,3 +680,68 @@ let lt=0;function loop(t){const d=Math.min(.05,(t-lt)/1000||0);lt=t;pad();if(mod
 applyQ(1);newCol();init(1);openG(true);$('go').onclick=()=>{if(mode=='hangar'){const v=VH.find(x=>x.id==hSel);if(!v.g)return toast('Эта машина покупается в бою за '+v.c+' ОП. Выбери наземную технику');$('gar').style.display='none';applyQ(LD.q);newGame()}else{if(hSel==vo())return closeG();const v=VH.find(x=>x.id==hSel);if(xp<v.c)return toast('Нужно '+v.c+' ОП');xp-=v.c;setV(hSel);closeG()}};
 requestAnimationFrame(loop);
 </script></body></html>
+<style>
+/* === TITAN GRAPHICS UPGRADE === */
+
+/* Более чёткие панели интерфейса */
+.card, #hud, #nav, #fov, #t,
+button {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Неоновое свечение кнопок */
+button {
+  transition:
+    transform 0.18s ease,
+    filter 0.18s ease,
+    box-shadow 0.18s ease;
+  box-shadow:
+    0 0 8px rgba(70, 190, 255, 0.18),
+    inset 0 0 8px rgba(255, 255, 255, 0.08);
+}
+
+/* Подсветка при нажатии */
+button:active {
+  transform: scale(0.94);
+  filter: brightness(1.3);
+}
+
+/* Более объёмные панели */
+.card {
+  border-radius: 14px;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+/* Плавное появление интерфейса */
+#hud, #nav, #fov {
+  animation: titanFadeIn 0.7s ease-out both;
+}
+
+@keyframes titanFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Улучшенная читаемость текста */
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Уважение к настройке уменьшения анимации */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
